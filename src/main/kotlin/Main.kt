@@ -3,9 +3,10 @@ import java.lang.StringBuilder
 import java.nio.file.Paths
 
 val PATH = Paths.get("").toAbsolutePath().toString() + "\\src\\main\\resources\\"
-const val FILE = "shake"
 
-fun main() {
+fun main(args: Array<String>) {
+    val FILE = args[0]
+
     val inputText = readFile("$PATH$FILE.txt")
 
     val compressed = lzwEncode(inputText)
