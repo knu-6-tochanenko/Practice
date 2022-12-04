@@ -3,16 +3,17 @@ import java.lang.StringBuilder
 import java.nio.file.Paths
 
 val PATH = Paths.get("").toAbsolutePath().toString() + "\\src\\main\\resources\\"
+const val FILE = "shake"
 
 fun main() {
-    val inputText = readFile(PATH + "to_encode.txt")
+    val inputText = readFile("$PATH$FILE.txt")
 
     val compressed = lzwEncode(inputText)
-    writeFile(PATH + "compressed.txt", intToString(compressed))
+    writeFile("$PATH${FILE}_compressed.txt", intToString(compressed))
 
-    val compressedText = readFile(PATH + "compressed.txt")
+    val compressedText = readFile("$PATH${FILE}_compressed.txt")
     val decompressed = lzwDecode(stringToInt(compressedText))
-    writeFile(PATH + "decompressed.txt", decompressed)
+    writeFile("$PATH${FILE}_decompressed.txt", decompressed)
 }
 
 fun readFile(path: String): String = File(path)
