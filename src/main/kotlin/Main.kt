@@ -4,8 +4,13 @@ import java.nio.file.Paths
 val PATH = Paths.get("").toAbsolutePath().toString() + "\\src\\main\\resources\\"
 
 fun main() {
-    val inputText = readFile(PATH + "to_encode.txt")
-    writeFile(PATH + "encoded.txt", inputText)
+//    val inputText = readFile(PATH + "to_encode.txt")
+//    writeFile(PATH + "encoded.txt", inputText)
+
+    val compressed = lzwEncode("geekific-geekific")
+    println(compressed)
+    val decompressed = lzwDecode(compressed.toMutableList())
+    println(decompressed)
 }
 
 fun readFile(path: String): String = File(path)
