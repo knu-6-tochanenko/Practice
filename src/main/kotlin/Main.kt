@@ -5,16 +5,19 @@ import java.nio.file.Paths
 val PATH = Paths.get("").toAbsolutePath().toString() + "\\src\\main\\resources\\"
 
 fun main(args: Array<String>) {
-    val FILE = args[0]
+    runLzw(args[0])
+}
 
-    val inputText = readFile("$PATH$FILE.txt")
+
+fun runLzw(file: String) {
+    val inputText = readFile("$PATH$file.txt")
 
     val compressed = lzwEncode(inputText)
-    writeFile("$PATH${FILE}_compressed.txt", intToString(compressed))
+    writeFile("$PATH${file}_compressed.txt", intToString(compressed))
 
-    val compressedText = readFile("$PATH${FILE}_compressed.txt")
+    val compressedText = readFile("$PATH${file}_compressed.txt")
     val decompressed = lzwDecode(stringToInt(compressedText))
-    writeFile("$PATH${FILE}_decompressed.txt", decompressed)
+    writeFile("$PATH${file}_decompressed.txt", decompressed)
 }
 
 fun readFile(path: String): String = File(path)
